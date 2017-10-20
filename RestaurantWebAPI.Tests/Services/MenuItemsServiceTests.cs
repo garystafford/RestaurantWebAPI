@@ -20,7 +20,7 @@ namespace RestaurantWebAPI.Tests.Services
         }
 
         [TestMethod()]
-        public static void PostMenuTest()
+        public void PostMenuTest()
         {
 
             MenuItemsService.PostMenu();
