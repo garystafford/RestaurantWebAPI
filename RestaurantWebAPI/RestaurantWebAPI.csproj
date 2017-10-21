@@ -114,7 +114,7 @@
     <Compile Include="Models\OrderResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\MenuItemsService.cs" />
-    <Compile Include="Services\OrderService.cs" />
+    <Compile Include="Services\OrdersService.cs" />
     <Compile Include="Utilities.cs" />
   </ItemGroup>
   <ItemGroup>

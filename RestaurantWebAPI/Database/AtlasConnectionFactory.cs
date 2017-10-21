@@ -5,7 +5,7 @@ namespace RestaurantWebAPI.Database
 {
     public static class AtlasConnectionFactory
     {
-        public static IMongoDatabase MongoDatabase(string databaseName)
+        public static IMongoDatabase GetDatabase(string databaseName)
         {
             var atlasCluster = Environment.GetEnvironmentVariable("ATLAS_CLUSTER");
             var atlasUsername = Environment.GetEnvironmentVariable("ATLAS_USERNAME");

@@ -9,13 +9,13 @@ namespace RestaurantWebAPI.Tests.Services
         [TestInitialize()]
         public void TestInitialize()
         {
-            OrderService.DeleteOrders();
+            OrdersService.DeleteOrders();
         }
 
         [TestCleanup()]
         public void TestCleanUp()
         {
-            OrderService.DeleteOrders();
+            OrdersService.DeleteOrders();
         }
 
         [TestMethod()]
@@ -23,8 +23,8 @@ namespace RestaurantWebAPI.Tests.Services
         {
             const string order = "[{\"Quantity\": \"1\",\"Description\": \"Cheeseburger\",\"Price\": \"3.99\"}," +
                                  "{\"Quantity\": \"2\",\"Description\": \"Hot Dog\",\"Price\": \"2.49\"}]";
-            OrderService.PostOrder(order);
-            var orders = OrderService.GetOrders();
+            OrdersService.PostOrder(order);
+            var orders = OrdersService.GetOrders();
 
             Assert.AreEqual(1, orders.Count);
             Assert.AreEqual(2, orders[0].OrderItems.Count);
@@ -38,11 +38,11 @@ namespace RestaurantWebAPI.Tests.Services
         {
             const string order = "[{\"Quantity\": \"1\",\"Description\": \"Cheeseburger\",\"Price\": \"3.99\"}," +
                                  "{\"Quantity\": \"2\",\"Description\": \"Hot Dog\",\"Price\": \"2.49\"}]";
-            OrderService.PostOrder(order);
-            var orders = OrderService.GetOrders();
+            OrdersService.PostOrder(order);
+            var orders = OrdersService.GetOrders();
             var orderNumber = orders[0].OrderNumber;
 
-            OrderService.GetOrder(orderNumber);
+            OrdersService.GetOrder(orderNumber);
 
             Assert.AreEqual(1, orders.Count);
             Assert.AreEqual(2, orders[0].OrderItems.Count);
@@ -56,13 +56,13 @@ namespace RestaurantWebAPI.Tests.Services
         {
             var order = "[{\"Quantity\": \"1\",\"Description\": \"Cheeseburger\",\"Price\": \"3.99\"}," +
                         "{\"Quantity\": \"2\",\"Description\": \"Hot Dog\",\"Price\": \"2.49\"}]";
-            OrderService.PostOrder(order);
+            OrdersService.PostOrder(order);
 
             order = "[{\"Quantity\": \"3\",\"Description\": \"Coffee\",\"Price\": \"1.99\"}," +
                     "{\"Quantity\": \"2\",\"Description\": \"Ice Cream\",\"Price\": \"3.29\"}]";
-            OrderService.PostOrder(order);
+            OrdersService.PostOrder(order);
 
-            var orders = OrderService.GetOrders();
+            var orders = OrdersService.GetOrders();
 
             Assert.AreEqual(2, orders.Count);
         }
@@ -72,11 +72,11 @@ namespace RestaurantWebAPI.Tests.Services
         {
             const string order = "[{\"Quantity\": \"1\",\"Description\": \"Cheeseburger\",\"Price\": \"3.99\"}," +
                                  "{\"Quantity\": \"2\",\"Description\": \"Hot Dog\",\"Price\": \"2.49\"}]";
-            OrderService.PostOrder(order);
-            var orders = OrderService.GetOrders();
+            OrdersService.PostOrder(order);
+            var orders = OrdersService.GetOrders();
             var orderNumber = orders[0].OrderNumber;
-            OrderService.DeleteOrder(orderNumber);
-            orders = OrderService.GetOrders();
+            OrdersService.DeleteOrder(orderNumber);
+            orders = OrdersService.GetOrders();
 
             Assert.AreEqual(0, orders.Count);
         }
@@ -86,14 +86,14 @@ namespace RestaurantWebAPI.Tests.Services
         {
             var order = "[{\"Quantity\": \"1\",\"Description\": \"Cheeseburger\",\"Price\": \"3.99\"}," +
                         "{\"Quantity\": \"2\",\"Description\": \"Hot Dog\",\"Price\": \"2.49\"}]";
-            OrderService.PostOrder(order);
+            OrdersService.PostOrder(order);
 
             order = "[{\"Quantity\": \"3\",\"Description\": \"Coffee\",\"Price\": \"1.99\"}," +
                     "{\"Quantity\": \"2\",\"Description\": \"Ice Cream\",\"Price\": \"3.29\"}]";
-            OrderService.PostOrder(order);
+            OrdersService.PostOrder(order);
 
-            OrderService.DeleteOrders();
-            var orders = OrderService.GetOrders();
+            OrdersService.DeleteOrders();
+            var orders = OrdersService.GetOrders();
 
             Assert.AreEqual(0, orders.Count);
         }

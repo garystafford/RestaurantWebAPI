@@ -11,20 +11,20 @@ namespace RestaurantWebAPI.Controllers
         // GET: api/orders
         public List<Order> Get()
         {
-            return OrderService.GetOrders();
+            return OrdersService.GetOrders();
         }
 
         // GET: api/orders/5
         public Order Get(string id)
         {
-            return OrderService.GetOrder(id);
+            return OrdersService.GetOrder(id);
         }
 
         // POST: api/orders
         public OrderResponse Post(dynamic value)
         {
             var order = JsonConvert.SerializeObject(value);
-            return OrderService.PostOrder(order);
+            return OrdersService.PostOrder(order);
         }
 
 
@@ -37,13 +37,13 @@ namespace RestaurantWebAPI.Controllers
         // DELETE: api/orders
         public void Delete()
         {
-            OrderService.DeleteOrders();
+            OrdersService.DeleteOrders();
         }
 
         // DELETE: api/orders/5
         public void Delete(string id)
         {
-            OrderService.DeleteOrder(id);
+            OrdersService.DeleteOrder(id);
         }
 
     }

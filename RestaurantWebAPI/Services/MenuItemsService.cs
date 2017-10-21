@@ -41,12 +41,12 @@ namespace RestaurantWebAPI.Services
 
         public static void DeleteMenuItems()
         {
-            MongoAuthConnectionFactory.MongoDatabase("restaurant").DropCollection("menu");
+            MongoAuthConnectionFactory.GetDatabase("restaurant").DropCollection("menu");
         }
 
         private static IMongoCollection<MenuItem> CollectionMenuItems()
         {
-           return MongoAuthConnectionFactory.MongoDatabase("restaurant").GetCollection<MenuItem>("menu");
+           return MongoAuthConnectionFactory.GetDatabase("restaurant").GetCollection<MenuItem>("menu");
         }
 
         public static void DeleteMenuItem(string menuItemDescription)

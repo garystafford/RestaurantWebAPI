@@ -5,7 +5,7 @@ namespace RestaurantWebAPI.Database
 {
     internal static class MongoAuthConnectionFactory
     {
-        internal static IMongoDatabase MongoDatabase(string databaseName)
+        internal static IMongoDatabase GetDatabase(string databaseName)
         {
             var mongoConnectionString = Environment.GetEnvironmentVariable("MONGO_LOCAL_DB_URL");
             var mongoUsername = Environment.GetEnvironmentVariable("MONGO_LOCAL_DB_USERNAME");

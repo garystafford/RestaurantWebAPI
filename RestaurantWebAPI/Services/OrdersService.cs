@@ -8,7 +8,7 @@ using RestaurantWebAPI.Models;
 
 namespace RestaurantWebAPI.Services
 {
-    public static class OrderService
+    public static class OrdersService
     {
 
         public static OrderResponse PostOrder(string restaurantOrder)
@@ -60,7 +60,7 @@ namespace RestaurantWebAPI.Services
 
         public static void DeleteOrders()
         {
-            MongoAuthConnectionFactory.MongoDatabase("restaurant").DropCollection("orders");
+            MongoAuthConnectionFactory.GetDatabase("restaurant").DropCollection("orders");
         }
 
         private static Order DeserializeOrder(string restaurantOrder)
@@ -72,7 +72,7 @@ namespace RestaurantWebAPI.Services
 
         private static IMongoCollection<Order> GetCollectionOrders()
         {
-            var database = MongoAuthConnectionFactory.MongoDatabase("restaurant");
+            var database = MongoAuthConnectionFactory.GetDatabase("restaurant");
             return database.GetCollection<Order>("orders");
         }
     }

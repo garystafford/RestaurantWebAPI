@@ -2,9 +2,9 @@
 
 namespace RestaurantWebAPI
 {
-    internal static class Utilities
+    public static class Utilities
     {
-        internal static string NormalizeJsonPString(string jsonString)
+        public static string NormalizeJsonPString(string jsonString)
         {
             jsonString = Uri.UnescapeDataString(jsonString);
             var start = jsonString.IndexOf("[", StringComparison.InvariantCulture);
@@ -12,11 +12,11 @@ namespace RestaurantWebAPI
             var length = end - start;
             string normalizedJsonPString;
 
-            try
+            try // Is request body JSONP?
             {
                 normalizedJsonPString = jsonString.Substring(start, length);
             }
-            catch (ArgumentOutOfRangeException)
+            catch (ArgumentOutOfRangeException) // Request body must be plain old JSON
             {
                 return jsonString;
             }
