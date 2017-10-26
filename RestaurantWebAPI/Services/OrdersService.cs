@@ -72,8 +72,7 @@ namespace RestaurantWebAPI.Services
 
         private static IMongoCollection<Order> GetCollectionOrders()
         {
-            var database = MongoAuthConnectionFactory.GetDatabase("restaurant");
-            return database.GetCollection<Order>("orders");
+            return AtlasConnectionFactory.GetDatabase("restaurant").GetCollection<Order>("orders");
         }
     }
 }
