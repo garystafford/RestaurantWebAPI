@@ -6,8 +6,8 @@ namespace RestaurantWebAPI.Tests.Services
     [TestClass()]
     public class MenuItemsServiceTests
     {
-        private readonly string _menuItem1 = "{ \"Id\": \"1\", \"Description\": \"MenuItemTest1\", \"Price\": \"1.23\" }";
-        private readonly string _menuItem2 = "{ \"Id\": \"2\", \"Description\": \"MenuItemTest2\", \"Price\": \"4.56\" }";
+        private readonly string _menuItem1 = "{ \"id\": \"1\", \"description\": \"MenuItemTest1\", \"price\": \"1.23\" }";
+        private readonly string _menuItem2 = "{ \"id\": \"2\", \"description\": \"MenuItemTest2\", \"price\": \"4.56\" }";
 
 
         [TestInitialize()]

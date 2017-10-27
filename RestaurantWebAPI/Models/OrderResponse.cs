@@ -1,4 +1,6 @@
-﻿namespace RestaurantWebAPI.Models
+﻿using System;
+
+namespace RestaurantWebAPI.Models
 {
     public class OrderResponse
     {
@@ -6,17 +8,17 @@
         {
         }
 
-        public OrderResponse(string orderDateTime, string orderItems, string orderMessage)
+        public OrderResponse(DateTime timePlaced, string orderNumber, string message)
         {
-            OrderDateTime = orderDateTime;
-            OrderNumber = orderItems;
-            OrderMessage = orderMessage;
+            TimePlaced = timePlaced;
+            OrderNumber = orderNumber;
+            Message = message;
         }
 
-        public string OrderDateTime { get; set; }
+        public DateTime TimePlaced { get; set; }
 
         public string OrderNumber { get; set; }
 
-        public string OrderMessage { get; set; }
+        public string Message { get; set; }
     }
 }

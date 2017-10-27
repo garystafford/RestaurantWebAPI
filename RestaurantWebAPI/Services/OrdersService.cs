@@ -21,9 +21,9 @@ namespace RestaurantWebAPI.Services
 
                 return new OrderResponse
                 {
-                    OrderDateTime = DateTime.Now.ToString(CultureInfo.InvariantCulture),
+                    TimePlaced = order.TimePlaced,
                     OrderNumber = order.OrderNumber,
-                    OrderMessage = "Thank you for your order."
+                    Message = "Thank you for your order."
 
                 };
             }
@@ -31,9 +31,9 @@ namespace RestaurantWebAPI.Services
             {
                 return new OrderResponse
                 {
-                    OrderDateTime = DateTime.Now.ToString(CultureInfo.InvariantCulture),
+                    TimePlaced = DateTime.Now,
                     OrderNumber = Guid.NewGuid().ToString(),
-                    OrderMessage = "Sorry, an error has occurred. Please place your order again."
+                    Message = "Sorry, an error has occurred. Please place your order again."
                 };
             }
 
@@ -60,7 +60,7 @@ namespace RestaurantWebAPI.Services
 
         public static void DeleteOrders()
         {
-            AtlasConnectionFactory.GetDatabase("restaurant").DropCollection("orders");
+            MongoAuthConnectionFactory.GetDatabase("restaurant").DropCollection("orders");
         }
 
         private static Order DeserializeOrder(string restaurantOrder)
@@ -72,7 +72,7 @@ namespace RestaurantWebAPI.Services
 
         private static IMongoCollection<Order> GetCollectionOrders()
         {
-            return AtlasConnectionFactory.GetDatabase("restaurant").GetCollection<Order>("orders");
+            return MongoAuthConnectionFactory.GetDatabase("restaurant").GetCollection<Order>("orders");
         }
     }
 }

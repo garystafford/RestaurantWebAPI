@@ -9,24 +9,24 @@ namespace RestaurantWebAPI.Models
     {
         public Order()
         {
-            OrderNumber = Guid.NewGuid().ToString();
-            OrderDateTime = DateTime.Now;
+           OrderNumber = Guid.NewGuid().ToString();
+           TimePlaced = DateTime.Now;
         }
 
-        public Order(IList<OrderItem> orderItems)
+        public Order(IList<OrderItem> items)
         {
             OrderNumber = Guid.NewGuid().ToString();
-            OrderDateTime = DateTime.Now;
-            OrderItems = orderItems;
+            TimePlaced = DateTime.Now;
+            Items = items;
         }
 
         [BsonElement("order_number")]
         public string OrderNumber { get; set; }
 
-        [BsonElement("order_time")]
-        public DateTime OrderDateTime { get; set; }
+        [BsonElement("time_placed")]
+        public DateTime TimePlaced { get; set; }
 
-        [BsonElement("order_items")]
-        public IList<OrderItem> OrderItems { get; set; }
+        [BsonElement("items")]
+        public IList<OrderItem> Items { get; set; }
     }
 }
