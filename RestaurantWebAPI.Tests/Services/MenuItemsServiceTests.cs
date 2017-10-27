@@ -6,6 +6,9 @@ namespace RestaurantWebAPI.Tests.Services
     [TestClass()]
     public class MenuItemsServiceTests
     {
+        private readonly string _menuItem1 = "{ \"Id\": \"1\", \"Description\": \"MenuItemTest1\", \"Price\": \"1.23\" }";
+        private readonly string _menuItem2 = "{ \"Id\": \"2\", \"Description\": \"MenuItemTest2\", \"Price\": \"4.56\" }";
+
 
         [TestInitialize()]
         public void TestInitialize()
@@ -32,10 +35,8 @@ namespace RestaurantWebAPI.Tests.Services
         [TestMethod()]
         public void GetMenuItemsTest()
         {
-            var menuItem = "{ \"Description\": \"GetMenuItemsTest1\", \"Price\": \"9.99\" }";
-            MenuItemsService.PostMenuItem(menuItem);
-            menuItem = "{ \"Description\": \"GetMenuItemsTest2\", \"Price\": \"9.99\" }";
-            MenuItemsService.PostMenuItem(menuItem);
+            MenuItemsService.PostMenuItem(_menuItem1);
+            MenuItemsService.PostMenuItem(_menuItem2);
             var menuItems = MenuItemsService.GetMenuItems();
 
             Assert.AreEqual(2, menuItems.Count);
@@ -44,13 +45,12 @@ namespace RestaurantWebAPI.Tests.Services
         [TestMethod()]
         public void GetMenuItemTest()
         {
-            const string menuItem = "{ \"Description\": \"GetMenuItemTest\", \"Price\": \"9.99\" }";
-            MenuItemsService.PostMenuItem(menuItem);
-            var menuItems = MenuItemsService.GetMenuItems();
+            MenuItemsService.PostMenuItem(_menuItem1);
+            var menuItem = MenuItemsService.GetMenuItem(1);
 
-            Assert.AreEqual(1, menuItems.Count);
-            Assert.AreEqual("GetMenuItemTest", menuItems[0].Description);
-            Assert.AreEqual(9.99, menuItems[0].Price);
+            Assert.AreEqual(1, menuItem.Id);
+            Assert.AreEqual("MenuItemTest1", menuItem.Description);
+            Assert.AreEqual(1.23, menuItem.Price);
         }
 
         [TestMethod()]
@@ -65,23 +65,21 @@ namespace RestaurantWebAPI.Tests.Services
         [TestMethod()]
         public void DeleteMenuItemTest()
         {
-            const string menuItem = "{ \"Description\": \"DeleteMenuItemTest\", \"Price\": \"9.99\" }";
-            MenuItemsService.PostMenuItem(menuItem);
-            MenuItemsService.DeleteMenuItem("DeleteMenuItemTest");
-            var menuItems = MenuItemsService.GetMenuItems();
-            Assert.AreEqual(0, menuItems.Count);
+            MenuItemsService.PostMenuItem(_menuItem1);
+            MenuItemsService.DeleteMenuItem(1);
+            var menuItem = MenuItemsService.GetMenuItem(1);
+            Assert.IsNull(menuItem);
         }
 
         [TestMethod()]
         public void PostMenuItemTest()
         {
-            const string menuItem = "{ \"Description\": \"PostMenuItemTest\", \"Price\": \"9.99\" }";
-            MenuItemsService.PostMenuItem(menuItem);
-            var menuItems = MenuItemsService.GetMenuItems();
+            MenuItemsService.PostMenuItem(_menuItem2);
+            var menuItem = MenuItemsService.GetMenuItem(2);
 
-            Assert.AreEqual(1, menuItems.Count);
-            Assert.AreEqual("PostMenuItemTest", menuItems[0].Description);
-            Assert.AreEqual(9.99, menuItems[0].Price);
+            Assert.AreEqual(2, menuItem.Id);
+            Assert.AreEqual("MenuItemTest2", menuItem.Description);
+            Assert.AreEqual(4.56, menuItem.Price);
         }
     }
 }

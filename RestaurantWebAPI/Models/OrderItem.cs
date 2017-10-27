@@ -9,12 +9,16 @@ namespace RestaurantWebAPI.Models
         {
         }
 
-        public OrderItem(int quantity, string description, double price)
+        public OrderItem(int id, int quantity, string description, double price)
         {
+            Id = id;
             Quantity = quantity;
             Price = price;
             Description = description;
         }
+
+        [BsonElement("id")]
+        public int Id { get; set; }
 
 
         [BsonElement("quantity")]

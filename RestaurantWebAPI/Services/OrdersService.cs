@@ -60,7 +60,7 @@ namespace RestaurantWebAPI.Services
 
         public static void DeleteOrders()
         {
-            MongoAuthConnectionFactory.GetDatabase("restaurant").DropCollection("orders");
+            AtlasConnectionFactory.GetDatabase("restaurant").DropCollection("orders");
         }
 
         private static Order DeserializeOrder(string restaurantOrder)

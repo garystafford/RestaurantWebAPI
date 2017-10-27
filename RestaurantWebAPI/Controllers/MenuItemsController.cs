@@ -15,7 +15,7 @@ namespace RestaurantWebAPI.Controllers
         }
 
         // GET: api/menuitems/5
-        public MenuItem Get(string id)
+        public MenuItem Get(int id)
         {
             return MenuItemsService.GetMenuItem(id);
         }
@@ -48,7 +48,7 @@ namespace RestaurantWebAPI.Controllers
         }
 
         // DELETE: api/menuitems/5
-        public void Delete(string id)
+        public void Delete(int id)
         {
             MenuItemsService.DeleteMenuItem(id);
         }
