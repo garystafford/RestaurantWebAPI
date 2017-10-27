@@ -60,7 +60,12 @@ namespace RestaurantWebAPI.Services
 
         public static void DeleteOrders()
         {
-            MongoAuthConnectionFactory.GetDatabase("restaurant").DropCollection("orders");
+            AtlasConnectionFactory.GetDatabase("restaurant").DropCollection("orders");
+        }
+
+        private static IMongoCollection<Order> GetCollectionOrders()
+        {
+            return AtlasConnectionFactory.GetDatabase("restaurant").GetCollection<Order>("orders");
         }
 
         private static Order DeserializeOrder(string restaurantOrder)
@@ -68,11 +73,6 @@ namespace RestaurantWebAPI.Services
             restaurantOrder = Utilities.NormalizeJsonPString(restaurantOrder);
             var order = JsonConvert.DeserializeObject<List<OrderItem>>(restaurantOrder);
             return new Order(order);
-        }
-
-        private static IMongoCollection<Order> GetCollectionOrders()
-        {
-            return MongoAuthConnectionFactory.GetDatabase("restaurant").GetCollection<Order>("orders");
         }
     }
 }
