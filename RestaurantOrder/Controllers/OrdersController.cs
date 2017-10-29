@@ -29,7 +29,7 @@ namespace Restaurant.Order.Controllers
 
 
         // PUT: api/orders/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody] string value)
         {
             // TODO
         }
@@ -45,6 +45,5 @@ namespace Restaurant.Order.Controllers
         {
             OrdersService.DeleteOrder(id);
         }
-
     }
 }

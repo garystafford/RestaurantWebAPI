@@ -9,8 +9,8 @@ namespace Restaurant.Order.Models
     {
         public Order()
         {
-           OrderNumber = Guid.NewGuid().ToString();
-           TimePlaced = DateTime.Now;
+            OrderNumber = Guid.NewGuid().ToString();
+            TimePlaced = DateTime.Now;
         }
 
         public Order(IList<OrderItem> items)

@@ -8,7 +8,7 @@ namespace Restaurant.Menu.Services
 {
     public static class MenuItemsService
     {
-        static AtlasConnectionFactory _atlasConnectionFactory = new AtlasConnectionFactory();
+        private static readonly AtlasConnectionFactory _atlasConnectionFactory = new AtlasConnectionFactory();
 
         public static void PostMenu()
         {
@@ -48,7 +48,7 @@ namespace Restaurant.Menu.Services
 
         private static IMongoCollection<MenuItem> CollectionMenuItems()
         {
-           return _atlasConnectionFactory.GetDatabase("restaurant").GetCollection<MenuItem>("menu");
+            return _atlasConnectionFactory.GetDatabase("restaurant").GetCollection<MenuItem>("menu");
         }
 
         public static void DeleteMenuItem(int menuItemId)
@@ -69,6 +69,5 @@ namespace Restaurant.Menu.Services
             menuItems = Utilities.NormalizeJsonPString(menuItems);
             return JsonConvert.DeserializeObject<MenuItem>(menuItems);
         }
-
     }
 }

@@ -123,7 +123,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Properties\PublishProfiles\RestaurantWebAPI20171026011740 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\RestaurantOrderService - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

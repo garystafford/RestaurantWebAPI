@@ -21,7 +21,7 @@ namespace Restaurant.Menu.Controllers
         }
 
         // POST: api/menuitems
-        public void Post([FromBody]dynamic value)
+        public void Post([FromBody] dynamic value)
         {
             if (value == null)
             {
@@ -36,7 +36,7 @@ namespace Restaurant.Menu.Controllers
         }
 
         // PUT: api/menuitems/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody] string value)
         {
             // TODO
         }
@@ -52,6 +52,5 @@ namespace Restaurant.Menu.Controllers
         {
             MenuItemsService.DeleteMenuItem(id);
         }
-
     }
 }

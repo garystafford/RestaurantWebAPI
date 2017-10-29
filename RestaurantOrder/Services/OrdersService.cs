@@ -9,7 +9,7 @@ namespace Restaurant.Order.Services
 {
     public static class OrdersService
     {
-        static AtlasConnectionFactory _atlasConnectionFactory = new AtlasConnectionFactory();
+        private static readonly AtlasConnectionFactory _atlasConnectionFactory = new AtlasConnectionFactory();
 
 
         public static OrderResponse PostOrder(string restaurantOrder)
@@ -25,7 +25,6 @@ namespace Restaurant.Order.Services
                     TimePlaced = order.TimePlaced,
                     OrderNumber = order.OrderNumber,
                     Message = "Thank you for your order."
-
                 };
             }
             catch (Exception)
@@ -37,8 +36,6 @@ namespace Restaurant.Order.Services
                     Message = "Sorry, an error has occurred. Please place your order again."
                 };
             }
-
-
         }
 
         public static Models.Order GetOrder(string orderNumber)
