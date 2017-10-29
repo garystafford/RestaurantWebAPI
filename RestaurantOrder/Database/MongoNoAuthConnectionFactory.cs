@@ -2,9 +2,9 @@
 
 namespace Restaurant.Order.Database
 {
-    public static class MongoNoAuthConnectionFactory
+    public class MongoNoAuthConnectionFactory : IMongoConnectionFactory
     {
-        public static IMongoDatabase GetDatabase(string databaseName)
+        public IMongoDatabase GetDatabase(string databaseName)
         {
             var mongoClient = new MongoClient($"mongodb://localhost:27017");
             var mongoDatabase = mongoClient.GetDatabase(databaseName);

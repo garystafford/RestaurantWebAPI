@@ -3,9 +3,9 @@ using MongoDB.Driver;
 
 namespace Restaurant.Menu.Database
 {
-    internal static class MongoAuthConnectionFactory
+    public class MongoAuthConnectionFactory : IMongoConnectionFactory
     {
-        internal static IMongoDatabase GetDatabase(string databaseName)
+        public IMongoDatabase GetDatabase(string databaseName)
         {
             var mongoConnectionString = Environment.GetEnvironmentVariable("MONGO_LOCAL_DB_URL");
             var mongoUsername = Environment.GetEnvironmentVariable("MONGO_LOCAL_DB_USERNAME");

@@ -108,6 +108,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Database\AtlasConnectionFactory.cs" />
+    <Compile Include="Database\IMongoConnectionFactory.cs" />
     <Compile Include="Database\MongoAuthConnectionFactory.cs" />
     <Compile Include="Database\MongoNoAuthConnectionFactory.cs" />
     <Compile Include="Global.asax.cs">

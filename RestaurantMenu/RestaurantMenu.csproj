@@ -108,6 +108,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\MenuItemsController.cs" />
     <Compile Include="Database\AtlasConnectionFactory.cs" />
+    <Compile Include="Database\IMongoConnectionFactory.cs" />
     <Compile Include="Database\MongoAuthConnectionFactory.cs" />
     <Compile Include="Database\MongoNoAuthConnectionFactory.cs" />
     <Compile Include="Global.asax.cs">
@@ -121,6 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\RestaurantMenuService - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\RestaurantWebAPI20171026011740 - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -3,9 +3,9 @@ using MongoDB.Driver;
 
 namespace Restaurant.Order.Database
 {
-    public static class AtlasConnectionFactory
+    public class AtlasConnectionFactory : IMongoConnectionFactory
     {
-        public static IMongoDatabase GetDatabase(string databaseName)
+        public IMongoDatabase GetDatabase(string databaseName)
         {
             var atlasCluster = Environment.GetEnvironmentVariable("ATLAS_CLUSTER");
             var atlasUsername = Environment.GetEnvironmentVariable("ATLAS_USERNAME");

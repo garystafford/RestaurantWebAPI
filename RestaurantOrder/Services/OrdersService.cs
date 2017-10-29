@@ -9,6 +9,8 @@ namespace Restaurant.Order.Services
 {
     public static class OrdersService
     {
+        static AtlasConnectionFactory _atlasConnectionFactory = new AtlasConnectionFactory();
+
 
         public static OrderResponse PostOrder(string restaurantOrder)
         {
@@ -59,12 +61,12 @@ namespace Restaurant.Order.Services
 
         public static void DeleteOrders()
         {
-            AtlasConnectionFactory.GetDatabase("restaurant").DropCollection("orders");
+            _atlasConnectionFactory.GetDatabase("restaurant").DropCollection("orders");
         }
 
         private static IMongoCollection<Models.Order> GetCollectionOrders()
         {
-            return AtlasConnectionFactory.GetDatabase("restaurant").GetCollection<Models.Order>("orders");
+            return _atlasConnectionFactory.GetDatabase("restaurant").GetCollection<Models.Order>("orders");
         }
 
         private static Models.Order DeserializeOrder(string restaurantOrder)
