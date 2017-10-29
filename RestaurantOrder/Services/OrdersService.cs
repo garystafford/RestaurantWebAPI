@@ -9,7 +9,7 @@ namespace Restaurant.Order.Services
 {
     public static class OrdersService
     {
-        private static readonly AtlasConnectionFactory _atlasConnectionFactory = new AtlasConnectionFactory();
+        private static readonly IMongoConnectionFactory AtlasConnectionFactory = new AtlasConnectionFactory();
 
 
         public static OrderResponse PostOrder(string restaurantOrder)
@@ -58,19 +58,17 @@ namespace Restaurant.Order.Services
 
         public static void DeleteOrders()
         {
-            _atlasConnectionFactory.GetDatabase("restaurant").DropCollection("orders");
+            AtlasConnectionFactory.GetDatabase("restaurant").DropCollection("orders");
         }
 
         private static IMongoCollection<Models.Order> GetCollectionOrders()
         {
-            return _atlasConnectionFactory.GetDatabase("restaurant").GetCollection<Models.Order>("orders");
+            return AtlasConnectionFactory.GetDatabase("restaurant").GetCollection<Models.Order>("orders");
         }
 
         private static Models.Order DeserializeOrder(string restaurantOrder)
         {
-            restaurantOrder = Utilities.NormalizeJsonPString(restaurantOrder);
-            var order = JsonConvert.DeserializeObject<List<OrderItem>>(restaurantOrder);
-            return new Models.Order(order);
+            return JsonConvert.DeserializeObject<Models.Order>(restaurantOrder);
         }
     }
 }
