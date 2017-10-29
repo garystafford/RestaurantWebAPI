@@ -66,7 +66,6 @@ namespace Restaurant.Menu.Services
 
         private static MenuItem DeserializeMenuItems(string menuItems)
         {
-            menuItems = Utilities.NormalizeJsonPString(menuItems);
             return JsonConvert.DeserializeObject<MenuItem>(menuItems);
         }
     }

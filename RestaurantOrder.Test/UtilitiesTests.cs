@@ -1,5 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Restaurant.WebAPI;
 
 namespace Restaurant.Order.Tests
 {

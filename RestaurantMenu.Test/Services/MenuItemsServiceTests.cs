@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Restaurant.WebAPI.Services;
+using Restaurant.Menu.Services;
 
 namespace Restaurant.Menu.Tests.Services
 {
