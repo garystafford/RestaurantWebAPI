@@ -58,12 +58,12 @@ namespace Restaurant.Order.Services
 
         public static void DeleteOrders()
         {
-            AtlasConnectionFactory.GetDatabase("restaurant").DropCollection("orders");
+            AtlasConnectionFactory.GetDatabase("restaurantOrder").DropCollection("orders");
         }
 
         private static IMongoCollection<Models.Order> GetCollectionOrders()
         {
-            return AtlasConnectionFactory.GetDatabase("restaurant").GetCollection<Models.Order>("orders");
+            return AtlasConnectionFactory.GetDatabase("restaurantOrder").GetCollection<Models.Order>("orders");
         }
 
         private static Models.Order DeserializeOrder(string restaurantOrder)

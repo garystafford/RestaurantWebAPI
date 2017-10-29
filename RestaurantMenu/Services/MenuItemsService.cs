@@ -43,12 +43,12 @@ namespace Restaurant.Menu.Services
 
         public static void DeleteMenuItems()
         {
-            AtlasConnectionFactory.GetDatabase("restaurant").DropCollection("menu");
+            AtlasConnectionFactory.GetDatabase("restaurantMenu").DropCollection("menus");
         }
 
         private static IMongoCollection<MenuItem> CollectionMenuItems()
         {
-            return AtlasConnectionFactory.GetDatabase("restaurant").GetCollection<MenuItem>("menu");
+            return AtlasConnectionFactory.GetDatabase("restaurantMenu").GetCollection<MenuItem>("menus");
         }
 
         public static void DeleteMenuItem(int menuItemId)
