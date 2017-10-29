@@ -77,12 +77,6 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\RestaurantWebAPI\RestaurantWebAPI.csproj">
-      <Project>{7259CE39-8010-4697-A166-221634B4D9F7}</Project>
-      <Name>RestaurantWebAPI</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
