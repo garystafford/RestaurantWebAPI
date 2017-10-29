@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace RestaurantWebAPI.Models
+namespace Restaurant.WebAPI.Models
 {
     public class Menu : Collection<MenuItem>
     {

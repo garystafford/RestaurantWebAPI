@@ -1,7 +1,7 @@
 ﻿using System;
 using MongoDB.Driver;
 
-namespace RestaurantWebAPI.Database
+namespace Restaurant.WebAPI.Database
 {
     internal static class MongoAuthConnectionFactory
     {

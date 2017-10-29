@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using RestaurantWebAPI.Services;
+using Restaurant.WebAPI.Services;
 
-namespace RestaurantWebAPI.Tests.Services
+namespace Restaurant.WebAPI.Tests.Services
 {
     [TestClass()]
     public class OrderServiceTests

@@ -1,6 +1,6 @@
 ﻿using MongoDB.Driver;
 
-namespace RestaurantWebAPI.Database
+namespace Restaurant.WebAPI.Database
 {
     public static class MongoNoAuthConnectionFactory
     {

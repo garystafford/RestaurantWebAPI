@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 using System.Web.Http.Cors;
 
-namespace RestaurantWebAPI
+namespace Restaurant.WebAPI
 {
     public static class WebApiConfig
     {
@@ -13,7 +10,7 @@ namespace RestaurantWebAPI
             // Web API configuration and services
 
             // Web API routes
-            var cors = new EnableCorsAttribute("*", "*", "*");
+            var cors = new EnableCorsAttribute("http://restaurantdemoweb.azurewebsites.net", "*", "*");
             config.EnableCors(cors);
             config.MapHttpAttributeRoutes();
 

@@ -1,6 +1,6 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 
-namespace RestaurantWebAPI.Models
+namespace Restaurant.WebAPI.Models
 {
     [BsonIgnoreExtraElements]
     public class MenuItem

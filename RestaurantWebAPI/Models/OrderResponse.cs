@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RestaurantWebAPI.Models
+namespace Restaurant.WebAPI.Models
 {
     public class OrderResponse
     {

@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
 using Newtonsoft.Json;
-using RestaurantWebAPI.Models;
-using RestaurantWebAPI.Services;
+using Restaurant.WebAPI.Models;
+using Restaurant.WebAPI.Services;
 
-namespace RestaurantWebAPI.Controllers
+namespace Restaurant.WebAPI.Controllers
 {
     public class MenuItemsController : ApiController
     {

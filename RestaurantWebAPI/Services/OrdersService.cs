@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using MongoDB.Driver;
 using Newtonsoft.Json;
-using RestaurantWebAPI.Database;
-using RestaurantWebAPI.Models;
+using Restaurant.WebAPI.Database;
+using Restaurant.WebAPI.Models;
 
-namespace RestaurantWebAPI.Services
+namespace Restaurant.WebAPI.Services
 {
     public static class OrdersService
     {

@@ -7,6 +7,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantWebAPI", "Restaur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantWebAPI.Tests", "RestaurantWebAPI.Tests\RestaurantWebAPI.Tests.csproj", "{5A1855E3-212C-4F91-B2FC-7E5BB17CE761}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantOrder", "RestaurantOrder\RestaurantOrder.csproj", "{9449AF35-1592-4400-8F28-F995548DADBB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantMenu", "RestaurantMenu\RestaurantMenu.csproj", "{1383638E-397D-4E00-8911-094C54E6C849}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantMenu.Tests", "RestaurantMenu.Test\RestaurantMenu.Tests.csproj", "{25C0C500-AF90-4514-AB20-58E332C3DB82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurantOrder.Tests", "RestaurantOrder.Test\RestaurantOrder.Tests.csproj", "{ECD79729-57BC-4E80-8AB7-2FCCE3708CDF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +29,22 @@ Global
 		{5A1855E3-212C-4F91-B2FC-7E5BB17CE761}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A1855E3-212C-4F91-B2FC-7E5BB17CE761}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A1855E3-212C-4F91-B2FC-7E5BB17CE761}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9449AF35-1592-4400-8F28-F995548DADBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9449AF35-1592-4400-8F28-F995548DADBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9449AF35-1592-4400-8F28-F995548DADBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9449AF35-1592-4400-8F28-F995548DADBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1383638E-397D-4E00-8911-094C54E6C849}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1383638E-397D-4E00-8911-094C54E6C849}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1383638E-397D-4E00-8911-094C54E6C849}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1383638E-397D-4E00-8911-094C54E6C849}.Release|Any CPU.Build.0 = Release|Any CPU
+		{25C0C500-AF90-4514-AB20-58E332C3DB82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{25C0C500-AF90-4514-AB20-58E332C3DB82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{25C0C500-AF90-4514-AB20-58E332C3DB82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{25C0C500-AF90-4514-AB20-58E332C3DB82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECD79729-57BC-4E80-8AB7-2FCCE3708CDF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECD79729-57BC-4E80-8AB7-2FCCE3708CDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECD79729-57BC-4E80-8AB7-2FCCE3708CDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECD79729-57BC-4E80-8AB7-2FCCE3708CDF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

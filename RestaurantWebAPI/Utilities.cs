@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RestaurantWebAPI
+namespace Restaurant.WebAPI
 {
     public static class Utilities
     {
