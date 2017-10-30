@@ -27,8 +27,9 @@ namespace Restaurant.Order.Services
                     Message = "Thank you for your order."
                 };
             }
-            catch (Exception)
+            catch (Exception exception)
             {
+                Console.Write(exception);
                 return new OrderResponse
                 {
                     TimePlaced = DateTime.Now,
