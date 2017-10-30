@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Restaurant.Order.Database;
 using Restaurant.Order.Services;
 
 namespace Restaurant.Order.Tests.Services
@@ -13,23 +14,25 @@ namespace Restaurant.Order.Tests.Services
         private const string Order2 = "{\"items\":[{\"menuId\": \"3\",\"description\": \"Coffee\",\"quantity\": \"3\",\"price\": \"1.99\"}," +
             "{\"menuId\": \"4\",\"description\": \"Ice Cream\",\"quantity\": \"2\",\"price\": \"3.29\"}]}";
 
+        private readonly OrdersService _ordersService = new OrdersService(new MongoAuthConnectionFactory());
+
         [TestInitialize()]
         public void TestInitialize()
         {
-            OrdersService.DeleteOrders();
+            _ordersService.DeleteOrders();
         }
 
         [TestCleanup()]
         public void TestCleanUp()
         {
-            OrdersService.DeleteOrders();
+            _ordersService.DeleteOrders();
         }
 
         [TestMethod()]
         public void PostOrderTest()
         {
-            OrdersService.PostOrder(Order1);
-            var orders = OrdersService.GetOrders();
+            _ordersService.PostOrder(Order1);
+            var orders = _ordersService.GetOrders();
 
             Assert.AreEqual(1, orders.Count);
             Assert.AreEqual(2, orders[0].Items.Count);
@@ -40,13 +43,35 @@ namespace Restaurant.Order.Tests.Services
         }
 
         [TestMethod()]
-        public void GetOrderTest()
+        public void PutOrderTest()
         {
-            OrdersService.PostOrder(Order1);
-            var orders = OrdersService.GetOrders();
+            const string order2Revised = "{\"items\":[{\"menuId\": \"3\",\"description\": \"Gourmet Coffee\",\"quantity\": \"3\",\"price\": \"2.59\"}," +
+            "{\"menuId\": \"4\",\"description\": \"Soft-Serve Ice Cream\",\"quantity\": \"2\",\"price\": \"3.29\"}]}";
+
+            _ordersService.PostOrder(Order2);
+            var orders = _ordersService.GetOrders();
             var orderNumber = orders[0].OrderNumber;
 
-            OrdersService.GetOrder(orderNumber);
+            _ordersService.PutOrder(orderNumber, order2Revised);
+
+            orders = _ordersService.GetOrders();
+
+            Assert.AreEqual(1, orders.Count);
+            Assert.AreEqual(2, orders[0].Items.Count);
+            Assert.AreEqual(3, orders[0].Items[0].Quantity);
+            Assert.AreEqual(3, orders[0].Items[0].MenuId);
+            Assert.AreEqual("Gourmet Coffee", orders[0].Items[0].Description);
+            Assert.AreEqual(2.59, orders[0].Items[0].Price);
+        }
+
+        [TestMethod()]
+        public void GetOrderTest()
+        {
+            _ordersService.PostOrder(Order1);
+            var orders = _ordersService.GetOrders();
+            var orderNumber = orders[0].OrderNumber;
+
+            _ordersService.GetOrder(orderNumber);
 
             Assert.AreEqual(1, orders.Count);
             Assert.AreEqual(2, orders[0].Items.Count);
@@ -59,10 +84,10 @@ namespace Restaurant.Order.Tests.Services
         [TestMethod()]
         public void GetOrdersTest()
         {
-            OrdersService.PostOrder(Order1);
-            OrdersService.PostOrder(Order2);
+            _ordersService.PostOrder(Order1);
+            _ordersService.PostOrder(Order2);
 
-            var orders = OrdersService.GetOrders();
+            var orders = _ordersService.GetOrders();
 
             Assert.AreEqual(2, orders.Count);
         }
@@ -70,11 +95,11 @@ namespace Restaurant.Order.Tests.Services
         [TestMethod()]
         public void DeleteOrderTest()
         {
-            OrdersService.PostOrder(Order1);
-            var orders = OrdersService.GetOrders();
+            _ordersService.PostOrder(Order1);
+            var orders = _ordersService.GetOrders();
             var orderNumber = orders[0].OrderNumber;
-            OrdersService.DeleteOrder(orderNumber);
-            orders = OrdersService.GetOrders();
+            _ordersService.DeleteOrder(orderNumber);
+            orders = _ordersService.GetOrders();
 
             Assert.AreEqual(0, orders.Count);
         }
@@ -82,11 +107,11 @@ namespace Restaurant.Order.Tests.Services
         [TestMethod()]
         public void DeleteOrdersTest()
         {
-            OrdersService.PostOrder(Order1);
-            OrdersService.PostOrder(Order2);
+            _ordersService.PostOrder(Order1);
+            _ordersService.PostOrder(Order2);
 
-            OrdersService.DeleteOrders();
-            var orders = OrdersService.GetOrders();
+            _ordersService.DeleteOrders();
+            var orders = _ordersService.GetOrders();
 
             Assert.AreEqual(0, orders.Count);
         }

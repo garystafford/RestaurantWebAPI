@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using Newtonsoft.Json;
 using Restaurant.Order.Database;
@@ -7,17 +8,36 @@ using Restaurant.Order.Models;
 
 namespace Restaurant.Order.Services
 {
-    public static class OrdersService
+    public class OrdersService
     {
-        private static readonly IMongoConnectionFactory AtlasConnectionFactory = new AtlasConnectionFactory();
+        private readonly IMongoConnectionFactory _mongoConnectionFactory;
 
+        public OrdersService(IMongoConnectionFactory mongoConnectionFactory)
+        {
+            _mongoConnectionFactory = mongoConnectionFactory;
+        }
 
-        public static OrderResponse PostOrder(string restaurantOrder)
+        private IMongoDatabase GetMongoDatabase()
+        {
+            return _mongoConnectionFactory.GetDatabase("order");
+        }
+
+        private IMongoCollection<Models.Order> GetOrdersCollection()
+        {
+            return GetMongoDatabase().GetCollection<Models.Order>("orders");
+        }
+
+        private IMongoCollection<BsonDocument> GetOrdersCollectionAsBson()
+        {
+            return GetMongoDatabase().GetCollection<BsonDocument>("orders");
+        }
+
+        public OrderResponse PostOrder(string restaurantOrder)
         {
             try
             {
                 var order = DeserializeOrder(restaurantOrder);
-                var collectionOrders = GetCollectionOrders();
+                var collectionOrders = GetOrdersCollection();
                 collectionOrders.InsertOne(order);
 
                 return new OrderResponse
@@ -39,37 +59,45 @@ namespace Restaurant.Order.Services
             }
         }
 
-        public static Models.Order GetOrder(string orderNumber)
+        public Models.Order GetOrder(string orderNumber)
         {
-            var collectionOrders = GetCollectionOrders();
+            var collectionOrders = GetOrdersCollection();
             return collectionOrders.Find(order => order.OrderNumber == orderNumber).SingleOrDefault();
         }
 
-        public static List<Models.Order> GetOrders()
+        public List<Models.Order> GetOrders()
         {
-            var collectionOrders = GetCollectionOrders();
+            var collectionOrders = GetOrdersCollection();
             return collectionOrders.Find(order => order.OrderNumber != null).ToList();
         }
 
-        public static void DeleteOrder(string orderNumber)
+        public void DeleteOrder(string orderNumber)
         {
-            var collectionOrders = GetCollectionOrders();
+            var collectionOrders = GetOrdersCollection();
             collectionOrders.FindOneAndDelete(order => order.OrderNumber == orderNumber);
         }
 
-        public static void DeleteOrders()
+        public void DeleteOrders()
         {
-            AtlasConnectionFactory.GetDatabase("restaurantOrder").DropCollection("orders");
+            GetMongoDatabase().DropCollection("orders");
         }
 
-        private static IMongoCollection<Models.Order> GetCollectionOrders()
+        public void PutOrder(string orderNumber, string order)
         {
-            return AtlasConnectionFactory.GetDatabase("restaurantOrder").GetCollection<Models.Order>("orders");
+            var deserializeOrder = DeserializeOrder(order);
+            var collection = GetOrdersCollectionAsBson();
+
+            var filter = Builders<BsonDocument>.Filter.Eq("order_number", orderNumber);
+            var update = Builders<BsonDocument>.Update
+                .Set("items", deserializeOrder.Items)
+                .CurrentDate(DateTime.Now.ToJson());
+            var result = collection.UpdateOne(filter, update);
+            Console.Write(result.IsAcknowledged);
         }
 
-        private static Models.Order DeserializeOrder(string restaurantOrder)
+        private static Models.Order DeserializeOrder(string order)
         {
-            return JsonConvert.DeserializeObject<Models.Order>(restaurantOrder);
+            return JsonConvert.DeserializeObject<Models.Order>(order);
         }
     }
 }

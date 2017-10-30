@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
 using Newtonsoft.Json;
+using Restaurant.Menu.Database;
 using Restaurant.Menu.Models;
 using Restaurant.Menu.Services;
 
@@ -8,16 +9,19 @@ namespace Restaurant.Menu.Controllers
 {
     public class MenuItemsController : ApiController
     {
+
+        private readonly MenuItemsService _menuItemsService = new MenuItemsService(new AtlasConnectionFactory());
+        
         // GET: api/menuitems
         public List<MenuItem> Get()
         {
-            return MenuItemsService.GetMenuItems();
+            return _menuItemsService.GetMenuItems();
         }
 
         // GET: api/menuitems/5
         public MenuItem Get(int id)
         {
-            return MenuItemsService.GetMenuItem(id);
+            return _menuItemsService.GetMenuItem(id);
         }
 
         // POST: api/menuitems
@@ -25,32 +29,33 @@ namespace Restaurant.Menu.Controllers
         {
             if (value == null)
             {
-                MenuItemsService.DeleteMenuItems();
-                MenuItemsService.PostMenu();
+                _menuItemsService.DeleteMenuItems();
+                _menuItemsService.PostMenu();
             }
             else
             {
                 var menuItem = JsonConvert.SerializeObject(value);
-                MenuItemsService.PostMenuItem(menuItem);
+                _menuItemsService.PostMenuItem(menuItem);
             }
         }
 
         // PUT: api/menuitems/5
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] dynamic value)
         {
-            // TODO
+            var menuItem = JsonConvert.SerializeObject(value);
+            _menuItemsService.PutMenuItem(id, menuItem);
         }
 
         // DELETE: api/menuitems
         public void Delete()
         {
-            MenuItemsService.DeleteMenuItems();
+            _menuItemsService.DeleteMenuItems();
         }
 
         // DELETE: api/menuitems/5
         public void Delete(int id)
         {
-            MenuItemsService.DeleteMenuItem(id);
+            _menuItemsService.DeleteMenuItem(id);
         }
     }
 }

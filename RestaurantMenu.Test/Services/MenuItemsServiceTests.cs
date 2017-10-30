@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Restaurant.Menu.Database;
 using Restaurant.Menu.Services;
 
 namespace Restaurant.Menu.Tests.Services
@@ -6,28 +7,30 @@ namespace Restaurant.Menu.Tests.Services
     [TestClass()]
     public class MenuItemsServiceTests
     {
-        private readonly string _menuItem1 = "{ \"id\": \"1\", \"description\": \"MenuItemTest1\", \"price\": \"1.23\" }";
-        private readonly string _menuItem2 = "{ \"id\": \"2\", \"description\": \"MenuItemTest2\", \"price\": \"4.56\" }";
+        private const string MenuItem1 = "{\"menuId\": \"1\", \"description\": \"MenuItemTest1\", \"price\": \"1.23\"}";
+        private const string MenuItem2 = "{\"menuId\": \"2\", \"description\": \"MenuItemTest2\", \"price\": \"4.56\"}";
+
+        private readonly MenuItemsService _menuItemsService = new MenuItemsService(new MongoAuthConnectionFactory());
 
 
         [TestInitialize()]
         public void TestInitialize()
         {
-            MenuItemsService.DeleteMenuItems();
+            _menuItemsService.DeleteMenuItems();
         }
 
         [TestCleanup()]
         public void TestCleanUp()
         {
-            MenuItemsService.DeleteMenuItems();
+            _menuItemsService.DeleteMenuItems();
         }
 
         [TestMethod()]
         public void PostMenuTest()
         {
 
-            MenuItemsService.PostMenu();
-            var menuItems = MenuItemsService.GetMenuItems();
+            _menuItemsService.PostMenu();
+            var menuItems = _menuItemsService.GetMenuItems();
 
             Assert.AreEqual(10, menuItems.Count);
         }
@@ -35,9 +38,9 @@ namespace Restaurant.Menu.Tests.Services
         [TestMethod()]
         public void GetMenuItemsTest()
         {
-            MenuItemsService.PostMenuItem(_menuItem1);
-            MenuItemsService.PostMenuItem(_menuItem2);
-            var menuItems = MenuItemsService.GetMenuItems();
+            _menuItemsService.PostMenuItem(MenuItem1);
+            _menuItemsService.PostMenuItem(MenuItem2);
+            var menuItems = _menuItemsService.GetMenuItems();
 
             Assert.AreEqual(2, menuItems.Count);
         }
@@ -45,10 +48,10 @@ namespace Restaurant.Menu.Tests.Services
         [TestMethod()]
         public void GetMenuItemTest()
         {
-            MenuItemsService.PostMenuItem(_menuItem1);
-            var menuItem = MenuItemsService.GetMenuItem(1);
+            _menuItemsService.PostMenuItem(MenuItem1);
+            var menuItem = _menuItemsService.GetMenuItem(1);
 
-            Assert.AreEqual(1, menuItem.Id);
+            Assert.AreEqual(1, menuItem.MenuId);
             Assert.AreEqual("MenuItemTest1", menuItem.Description);
             Assert.AreEqual(1.23, menuItem.Price);
         }
@@ -56,30 +59,45 @@ namespace Restaurant.Menu.Tests.Services
         [TestMethod()]
         public void DeleteMenuItemsTest()
         {
-            MenuItemsService.PostMenu();
-            MenuItemsService.DeleteMenuItems();
-            var menuItems = MenuItemsService.GetMenuItems();
+            _menuItemsService.PostMenu();
+            _menuItemsService.DeleteMenuItems();
+            var menuItems = _menuItemsService.GetMenuItems();
             Assert.AreEqual(0, menuItems.Count);
         }
 
         [TestMethod()]
         public void DeleteMenuItemTest()
         {
-            MenuItemsService.PostMenuItem(_menuItem1);
-            MenuItemsService.DeleteMenuItem(1);
-            var menuItem = MenuItemsService.GetMenuItem(1);
+            _menuItemsService.PostMenuItem(MenuItem1);
+            _menuItemsService.DeleteMenuItem(1);
+            var menuItem = _menuItemsService.GetMenuItem(1);
             Assert.IsNull(menuItem);
         }
 
         [TestMethod()]
         public void PostMenuItemTest()
         {
-            MenuItemsService.PostMenuItem(_menuItem2);
-            var menuItem = MenuItemsService.GetMenuItem(2);
+            _menuItemsService.PostMenuItem(MenuItem2);
+            var menuItem = _menuItemsService.GetMenuItem(2);
 
-            Assert.AreEqual(2, menuItem.Id);
+            Assert.AreEqual(2, menuItem.MenuId);
             Assert.AreEqual("MenuItemTest2", menuItem.Description);
             Assert.AreEqual(4.56, menuItem.Price);
+        }
+
+        [TestMethod()]
+        public void PutMenuItemTest()
+        {
+            const string menuItem2Revised = "{\"menuId\": \"2\", \"description\": \"MenuItemTest2 Revised\", \"price\": \"5.49\"}";
+
+            _menuItemsService.PostMenuItem(MenuItem2);
+            _menuItemsService.PutMenuItem(2, menuItem2Revised);
+
+            var menuItem = _menuItemsService.GetMenuItem(2);
+
+            Assert.AreEqual(2, menuItem.MenuId);
+            Assert.AreEqual("MenuItemTest2 Revised", menuItem.Description);
+            Assert.AreEqual(5.49, menuItem.Price);
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using Newtonsoft.Json;
 using Restaurant.Menu.Database;
@@ -6,62 +8,92 @@ using Restaurant.Menu.Models;
 
 namespace Restaurant.Menu.Services
 {
-    public static class MenuItemsService
+    public class MenuItemsService
     {
-        private static readonly IMongoConnectionFactory AtlasConnectionFactory = new AtlasConnectionFactory();
+        private readonly IMongoConnectionFactory _mongoConnectionFactory;
 
-        public static void PostMenu()
+        public MenuItemsService(IMongoConnectionFactory mongoConnectionFactory)
+        {
+            _mongoConnectionFactory = mongoConnectionFactory;
+        }
+
+        public void PostMenu()
         {
             var menu = new List<MenuItem>
             {
-                new MenuItem {Id = 1, Description = "Cheeseburger", Price = 3.99},
-                new MenuItem {Id = 2, Description = "Hamburger", Price = 2.99},
-                new MenuItem {Id = 3, Description = "Hot Dog", Price = 2.49},
-                new MenuItem {Id = 4, Description = "Grilled Chicken Sandwich", Price = 4.99},
-                new MenuItem {Id = 5, Description = "French Fries", Price = 1.29},
-                new MenuItem {Id = 6, Description = "Onion Rings", Price = 2.29},
-                new MenuItem {Id = 7, Description = "Soft Drink", Price = 1.19},
-                new MenuItem {Id = 8, Description = "Coffee", Price = 0.99},
-                new MenuItem {Id = 9, Description = "Water", Price = 0.00},
-                new MenuItem {Id = 10, Description = "Ice Cream Cone", Price = 1.99}
+                new MenuItem {MenuId = 1, Description = "Cheeseburger", Price = 3.99},
+                new MenuItem {MenuId = 2, Description = "Hamburger", Price = 2.99},
+                new MenuItem {MenuId = 3, Description = "Hot Dog", Price = 2.49},
+                new MenuItem {MenuId = 4, Description = "Grilled Chicken Sandwich", Price = 4.99},
+                new MenuItem {MenuId = 5, Description = "French Fries", Price = 1.29},
+                new MenuItem {MenuId = 6, Description = "Onion Rings", Price = 2.29},
+                new MenuItem {MenuId = 7, Description = "Soft Drink", Price = 1.19},
+                new MenuItem {MenuId = 8, Description = "Coffee", Price = 0.99},
+                new MenuItem {MenuId = 9, Description = "Water", Price = 0.00},
+                new MenuItem {MenuId = 10, Description = "Ice Cream Cone", Price = 1.99}
             };
-            var collectionMenuItems = CollectionMenuItems();
-            collectionMenuItems.InsertMany(menu);
+
+            var collection = GetMenuItemsCollection();
+            collection.InsertMany(menu);
         }
 
-        public static List<MenuItem> GetMenuItems()
+        private IMongoDatabase GetMongoDatabase()
         {
-            var collectionMenuItems = CollectionMenuItems();
-            return collectionMenuItems.Find(x => x.Description != null).SortBy(x => x.Description).ToList();
+            return _mongoConnectionFactory.GetDatabase("restaurantMenu");
         }
 
-        public static MenuItem GetMenuItem(int menuItemId)
+        private IMongoCollection<MenuItem> GetMenuItemsCollection()
         {
-            var collectionMenuItems = CollectionMenuItems();
-            return collectionMenuItems.Find(item => item.Id == menuItemId).SingleOrDefault();
+            return GetMongoDatabase().GetCollection<MenuItem>("menus");
         }
 
-        public static void DeleteMenuItems()
+        private IMongoCollection<BsonDocument> GetMenuItemsCollectionAsBson()
         {
-            AtlasConnectionFactory.GetDatabase("restaurantMenu").DropCollection("menus");
+            return GetMongoDatabase().GetCollection<BsonDocument>("menus");
         }
 
-        private static IMongoCollection<MenuItem> CollectionMenuItems()
+        public List<MenuItem> GetMenuItems()
         {
-            return AtlasConnectionFactory.GetDatabase("restaurantMenu").GetCollection<MenuItem>("menus");
+            var collection = GetMenuItemsCollection();
+            return collection.Find(x => x.Description != null).SortBy(x => x.Description).ToList();
         }
 
-        public static void DeleteMenuItem(int menuItemId)
+        public MenuItem GetMenuItem(int menuId)
         {
-            var collectionMenuItems = CollectionMenuItems();
-            collectionMenuItems.FindOneAndDelete(item => item.Id == menuItemId);
+            var collection = GetMenuItemsCollection();
+            return collection.Find(item => item.MenuId == menuId).SingleOrDefault();
         }
 
-        public static void PostMenuItem(string menuItem)
+        public void DeleteMenuItems()
+        {
+            _mongoConnectionFactory.GetDatabase("restaurantMenu").DropCollection("menus");
+        }
+
+        public void DeleteMenuItem(int menuId)
+        {
+            var collection = GetMenuItemsCollection();
+            collection.FindOneAndDelete(item => item.MenuId == menuId);
+        }
+
+        public void PostMenuItem(string menuItem)
         {
             var menuItemDeserialized = DeserializeMenuItems(menuItem);
-            var collectionMenuItems = CollectionMenuItems();
-            collectionMenuItems.InsertOne(menuItemDeserialized);
+            var collection = GetMenuItemsCollection();
+            collection.InsertOne(menuItemDeserialized);
+        }
+
+        public void PutMenuItem(int menuId, string menuItem)
+        {
+            var menuItemDeserialized = DeserializeMenuItems(menuItem);
+            var collection = GetMenuItemsCollectionAsBson();
+
+            var filter = Builders<BsonDocument>.Filter.Eq("menu_id", menuId);
+            var update = Builders<BsonDocument>.Update
+                .Set("description", menuItemDeserialized.Description)
+                .Set("price", menuItemDeserialized.Price)
+                .CurrentDate(DateTime.Now.ToJson());
+            var result = collection.UpdateOne(filter, update);
+            Console.Write(result.IsAcknowledged);
         }
 
         private static MenuItem DeserializeMenuItems(string menuItems)

@@ -9,15 +9,15 @@ namespace Restaurant.Menu.Models
         {
         }
 
-        public MenuItem(int id, string description, double price)
+        public MenuItem(int menuId, string description, double price)
         {
-            Id = id;
+            MenuId = menuId;
             Description = description;
             Price = price;
         }
 
-        [BsonElement("id")]
-        public int Id { get; set; }
+        [BsonElement("menu_id")]
+        public int MenuId { get; set; }
 
         [BsonElement("description")]
         public string Description { get; set; }
