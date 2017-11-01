@@ -10,7 +10,7 @@ namespace Restaurant.Order
             // Web API configuration and services
 
             // Web API routes
-            var cors = new EnableCorsAttribute("http://restaurantweb.azurewebsites.net,http://localhost:4200", "*", "*");
+            var cors = new EnableCorsAttribute("https://restaurantweb.azurewebsites.net,http://localhost:4200", "*", "*");
             config.EnableCors(cors);
             config.MapHttpAttributeRoutes();
 
