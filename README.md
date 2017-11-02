@@ -1,3 +1,7 @@
-# Restaurant Web API 2 Demo
+# Restaurant RESTful Services Demo
 
-Demo of ASP.NET Web API 2 (C#) for building RESTful .NET Services
+Set of RESTful services built with C# using Microsoft’s Web API 2 and .NET 4.7. Developed for the following post, [Developing Applications for the Cloud with Azure App Services and MongoDB Atlas](https://wp.me/p1RD28-5ij).
+
+Services are designed to be deployed as Azure API Apps, backed by MongoDB Atlas.
+
+![Architecture](RestaurantDemoAPI.png)
