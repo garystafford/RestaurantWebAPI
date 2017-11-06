@@ -4,7 +4,7 @@ import { settings } from './config/config';
 import { logger } from './services/logger';
 
 export let api = restify.createServer({
-  name: settings.name
+    name: settings.name
 });
 
 //restify.CORS.ALLOW_HEADERS.push('authorization');
@@ -24,6 +24,7 @@ fs.readdirSync(__dirname + '/routes').forEach((routeConfig: string) => {
     }
 });
 
-api.listen(settings.port, () => {
-    logger.info(`INFO: ${settings.name} is running at ${api.url}`);
-});
+api.listen(settings.port,
+    () => {
+        logger.info(`INFO: ${settings.name} is running at ${api.url}`);
+    });

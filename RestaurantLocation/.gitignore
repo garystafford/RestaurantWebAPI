@@ -41,3 +41,4 @@ app/**/*.js
 app/**/*.map
 test/**/*.js
 test/**/*.map
+dist/
