@@ -7,8 +7,6 @@ const logger_1 = require("./services/logger");
 exports.api = restify.createServer({
     name: config_1.settings.name
 });
-//restify.CORS.ALLOW_HEADERS.push('authorization');
-//api.use(restify.CORS());
 exports.api.pre(restify.pre.sanitizePath());
 exports.api.use(restify.plugins.acceptParser(exports.api.acceptable));
 exports.api.use(restify.plugins.bodyParser());

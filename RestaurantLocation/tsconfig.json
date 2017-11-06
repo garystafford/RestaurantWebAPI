@@ -8,13 +8,14 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "sourceMap": true,
-    "removeComments": false,
+    "removeComments": true,
     "noImplicitReturns": true,
     "noImplicitAny": true,
     "preserveConstEnums": true
   },
   "include": [
-    "app/**/*"
+    "app/**/*",
+    "test/**/*"
   ],
   "exclude": [
     "logs",

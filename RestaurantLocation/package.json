@@ -7,7 +7,7 @@
     "test": "npm run compile && node_modules/.bin/_mocha dist/test/unit/**/*.spec.js",
     "test:debug": "npm run compile && node_modules/.bin/_mocha --inspect-brk dist/test/unit/**/*.spec.js",
     "compile": "node_modules/.bin/tsc",
-    "start": "node app/app.js"
+    "start": "node dist/app/app.js"
   },
   "keywords": [
     "typescript",
@@ -16,17 +16,21 @@
   "author": "Gary A. Stafford",
   "license": "MIT",
   "dependencies": {
+    "compression": "^1.7.1",
+    "helmet": "^3.9.0",
     "mongoose": "^4.13.0",
     "restify": "^6.3.1",
-    "restify-cors-middleware": "^1.0.1"
+    "restify-cors-middleware": "^1.0.1",
+    "@types/compression": "0.0.34",
+    "@types/helmet": "0.0.37",
+    "@types/mongoose": "^4.7.25",
+    "@types/node": "^8.0.47",
+    "@types/restify": "^5.0.6",
+    "@types/restify-cors-middleware": "^1.0.1"
   },
   "devDependencies": {
     "@types/chai": "^4.0.4",
     "@types/mocha": "^2.2.44",
-    "@types/mongoose": "^4.7.25",
-    "@types/node": "^8.0.47",
-    "@types/restify": "^5.0.6",
-    "@types/restify-cors-middleware": "^1.0.1",
     "@types/sinon": "^2.3.7",
     "@types/supertest": "^2.0.3",
     "chai": "^4.1.2",

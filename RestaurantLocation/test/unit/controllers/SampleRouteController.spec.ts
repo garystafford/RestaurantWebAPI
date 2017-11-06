@@ -2,13 +2,12 @@ import { expect } from 'chai';
 import 'mocha';
 import { api as server } from '../../../app/app';
 import * as supertest from 'supertest';
-import {logger} from '../../../app/services/logger';
+import { logger } from '../../../app/services/logger';
 import * as sinon from 'sinon';
 
 
 describe('sample route controller', () => {
 
-    const expect = chai.expect;
     const sandbox = sinon.sandbox.create();
     let logInfoStub: sinon.SinonStub;
 

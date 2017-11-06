@@ -9,6 +9,5 @@ exports.settings = {
 };
 if (env === 'production') {
     exports.settings.env = 'prod';
-    // other production settings
 }
 //# sourceMappingURL=config.js.map

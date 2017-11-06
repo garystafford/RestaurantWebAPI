@@ -11,8 +11,9 @@ npm install -g yarn
 
 # transpile typescript
 yarn run compile
+
 # same as
-node_modules/.bin/tsc --removeComments
+node_modules/.bin/tsc
 
 # start
 yarn start
