@@ -8,17 +8,15 @@ Orginal file structure based on [restify-typescript-seed](https://github.com/sul
 
 # recommend using yarn vs. npm
 npm install -g yarn
+yarn install
 
 # transpile typescript
 yarn run compile
 
-# same as
-node_modules/.bin/tsc
+# test
+yarn test
 
 # start
 yarn start
-
-# same as
-node app/app.js
 ```
 
