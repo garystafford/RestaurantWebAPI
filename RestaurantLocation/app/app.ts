@@ -7,23 +7,23 @@ export let api = restify.createServer({
   name: settings.name
 });
 
-restify.CORS.ALLOW_HEADERS.push('authorization');
-api.use(restify.CORS());
+//restify.CORS.ALLOW_HEADERS.push('authorization');
+//api.use(restify.CORS());
 api.pre(restify.pre.sanitizePath());
-api.use(restify.acceptParser(api.acceptable));
-api.use(restify.bodyParser());
-api.use(restify.queryParser());
-api.use(restify.authorizationParser());
-api.use(restify.fullResponse());
+api.use(restify.plugins.acceptParser(api.acceptable));
+api.use(restify.plugins.bodyParser());
+api.use(restify.plugins.queryParser());
+api.use(restify.plugins.authorizationParser());
+api.use(restify.plugins.fullResponse());
 
 
-fs.readdirSync(__dirname + '/routes').forEach(function (routeConfig: string) {
-  if (routeConfig.substr(-3) === '.js') {
-    let route = require(__dirname + '/routes/' + routeConfig);
-    route.routes(api);
-  }
+fs.readdirSync(__dirname + '/routes').forEach((routeConfig: string) => {
+    if (routeConfig.substr(-3) === '.js') {
+        const route = require(__dirname + '/routes/' + routeConfig);
+        route.routes(api);
+    }
 });
 
-api.listen(settings.port, function () {
-  logger.info(`INFO: ${settings.name} is running at ${api.url}`);
+api.listen(settings.port, () => {
+    logger.info(`INFO: ${settings.name} is running at ${api.url}`);
 });

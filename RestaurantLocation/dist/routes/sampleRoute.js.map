@@ -1,0 +1,1 @@
+{"version":3,"file":"sampleRoute.js","sourceRoot":"","sources":["../../app/routes/sampleRoute.ts"],"names":[],"mappings":";;AACA,gFAAwE;AAExE,qBAAqB,GAAmB;IACpC,MAAM,SAAS,GAAG,IAAI,+BAAqB,EAAE,CAAC;IAC9C,GAAG,CAAC,GAAG,CAAC,WAAW,EAAE,SAAS,CAAC,GAAG,CAAC,CAAC;AACxC,CAAC;AAED,MAAM,CAAC,OAAO,CAAC,MAAM,GAAG,WAAW,CAAC"}

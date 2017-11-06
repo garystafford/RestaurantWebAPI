@@ -1,4 +1,5 @@
-import chai = require('chai');
+import { expect } from 'chai';
+import 'mocha';
 import { api as server } from '../../../app/app';
 import * as supertest from 'supertest';
 import {logger} from '../../../app/services/logger';
@@ -7,9 +8,9 @@ import * as sinon from 'sinon';
 
 describe('sample route controller', () => {
 
-    let expect = chai.expect;
-    let sandbox = sinon.sandbox.create();
-    let logInfoStub: Sinon.SinonStub;
+    const expect = chai.expect;
+    const sandbox = sinon.sandbox.create();
+    let logInfoStub: sinon.SinonStub;
 
     beforeEach(() => {
         logInfoStub = sandbox.stub(logger, 'info');

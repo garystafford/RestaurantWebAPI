@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "target": "es2015",
+    "outDir": "./dist",
+    "target": "es6",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
     "module": "commonjs",
     "moduleResolution": "node",
     "sourceMap": true,
@@ -9,6 +13,9 @@
     "noImplicitAny": true,
     "preserveConstEnums": true
   },
+  "include": [
+    "app/**/*"
+  ],
   "exclude": [
     "logs",
     "node_modules"

@@ -18,7 +18,7 @@
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/@types/chai/-/chai-4.0.4.tgz#fe86315d9a66827feeb16f73bc954688ec950e18"
 
-"@types/mocha@^2.2.32":
+"@types/mocha@^2.2.44":
   version "2.2.44"
   resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-2.2.44.tgz#1d4a798e53f35212fd5ad4d04050620171cd5b5e"
 
@@ -40,7 +40,14 @@
   version "8.0.47"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.47.tgz#968e596f91acd59069054558a00708c445ca30c2"
 
-"@types/restify@^5.0.6":
+"@types/restify-cors-middleware@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@types/restify-cors-middleware/-/restify-cors-middleware-1.0.1.tgz#6c230c53a419eb3af83eeaabbcbc4771f25299e9"
+  dependencies:
+    "@types/node" "*"
+    "@types/restify" "*"
+
+"@types/restify@*", "@types/restify@^5.0.6":
   version "5.0.6"
   resolved "https://registry.yarnpkg.com/@types/restify/-/restify-5.0.6.tgz#bbc363133048c7b4ba684b7d94f27c0ee6d1d776"
   dependencies:
@@ -758,6 +765,12 @@ resolve@^1.3.2:
   dependencies:
     path-parse "^1.0.5"
 
+restify-cors-middleware@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/restify-cors-middleware/-/restify-cors-middleware-1.0.1.tgz#6388d0d52d286e22650133d151a89d48b22fa0ab"
+  dependencies:
+    assert-plus "^1.0.0"
+
 restify-errors@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/restify-errors/-/restify-errors-5.0.0.tgz#668717e100683eec6ce0d515f89ff1dbec254a8d"
@@ -971,7 +984,7 @@ type-detect@^4.0.0:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/type-detect/-/type-detect-4.0.3.tgz#0e3f2670b44099b0b46c284d136a7ef49c74c2ea"
 
-typescript@^2.0.3:
+typescript@^2.6.1:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.6.1.tgz#ef39cdea27abac0b500242d6726ab90e0c846631"
 

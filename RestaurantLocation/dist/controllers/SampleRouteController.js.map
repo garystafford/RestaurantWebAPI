@@ -1,0 +1,1 @@
+{"version":3,"file":"SampleRouteController.js","sourceRoot":"","sources":["../../app/controllers/SampleRouteController.ts"],"names":[],"mappings":";;AACA,+CAA4C;AAE5C;IACQ,GAAG,CAAC,GAAoB,EAAE,GAAqB,EAAE,IAAkB;QACzE,eAAM,CAAC,IAAI,CAAC,sBAAsB,CAAC,CAAC;QACpC,GAAG,CAAC,IAAI,CAAC,GAAG,EAAE,MAAM,CAAC,CAAC;QACtB,MAAM,CAAC,IAAI,EAAE,CAAC;IACf,CAAC;CACD;AAND,wCAMC"}

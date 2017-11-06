@@ -1,8 +1,7 @@
-import chai = require('chai');
+import { expect } from 'chai';
+import 'mocha';
 import { api as server } from '../../../app/app';
 import * as supertest from 'supertest';
-
-let expect = chai.expect;
 
 describe('sample route controller', () => {
 

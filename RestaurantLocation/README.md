@@ -1,2 +1,23 @@
-# Restify project seed with typescript and unit test
-This source code is for blog <a href="http://www.sulhome.com/Blog/9/restify-project-seed-with-typescript-and-unit-test" target="_blank">Restify project seed with typescript and unit test</a>
+# Restaurant Location Service
+
+Orginal file structure based on [restify-typescript-seed](https://github.com/sulhome/restify-typescript-seed) GitHub project.
+
+## Working with Project
+
+```bash
+
+# recommend using yarn vs. npm
+npm install -g yarn
+
+# transpile typescript
+yarn run compile
+# same as
+node_modules/.bin/tsc --removeComments
+
+# start
+yarn start
+
+# same as
+node app/app.js
+```
+
