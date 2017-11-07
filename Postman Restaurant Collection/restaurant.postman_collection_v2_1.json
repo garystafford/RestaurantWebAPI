@@ -1,0 +1,501 @@
+{
+	"info": {
+		"name": "Restaurant",
+		"_postman_id": "630d9b9b-570e-d669-71c7-cda747e078ea",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "menuitems",
+			"description": "",
+			"item": [
+				{
+					"name": "api/menuitems {item}",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"menuId\": 1,\n    \"description\": \"Test Item\",\n    \"price\": 9.99\n}"
+						},
+						"url": {
+							"raw": "{{api_menu}}/{{api_prefix}}/menuitems",
+							"host": [
+								"{{api_menu}}"
+							],
+							"path": [
+								"{{api_prefix}}",
+								"menuitems"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "api/menuitems/{item}",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"menuId\": 1,\n    \"description\": \"Test Item Modified\",\n    \"price\": 9.99\n}"
+						},
+						"url": {
+							"raw": "{{api_menu}}/{{api_prefix}}/menuitems/1",
+							"host": [
+								"{{api_menu}}"
+							],
+							"path": [
+								"{{api_prefix}}",
+								"menuitems",
+								"1"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "api/menuitems/{item}",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"Description\": \"Tofu\",\n        \"Price\": 4.99\n    }"
+						},
+						"url": {
+							"raw": "{{api_menu}}/{{api_prefix}}/menuitems/1",
+							"host": [
+								"{{api_menu}}"
+							],
+							"path": [
+								"{{api_prefix}}",
+								"menuitems",
+								"1"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "api/menuitems {item}",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{api_menu}}/{{api_prefix}}/menuitems/1",
+							"host": [
+								"{{api_menu}}"
+							],
+							"path": [
+								"{{api_prefix}}",
+								"menuitems",
+								"1"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "api/menuitems",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{api_menu}}/{{api_prefix}}/menuitems",
+							"host": [
+								"{{api_menu}}"
+							],
+							"path": [
+								"{{api_prefix}}",
+								"menuitems"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "api/menuitems",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"Description\": \"Tofu\",\n        \"Price\": 4.99\n    }"
+						},
+						"url": {
+							"raw": "{{api_menu}}/{{api_prefix}}/menuitems",
+							"host": [
+								"{{api_menu}}"
+							],
+							"path": [
+								"{{api_prefix}}",
+								"menuitems"
+							]
+						},
+						"description": ""
+					},
+					"response": [
+						{
+							"id": "bee958c5-74c4-454c-851d-123db86465e4",
+							"name": "api/menuitems",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"Description\": \"Tofu\",\n        \"Price\": 4.99\n    }"
+								},
+								"url": {
+									"raw": "{{url}}/api/menuitems/",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"menuitems",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"name": "cache-control",
+									"key": "cache-control",
+									"value": "no-cache",
+									"description": ""
+								},
+								{
+									"name": "content-length",
+									"key": "content-length",
+									"value": "471",
+									"description": ""
+								},
+								{
+									"name": "content-type",
+									"key": "content-type",
+									"value": "application/json; charset=utf-8",
+									"description": ""
+								},
+								{
+									"name": "date",
+									"key": "date",
+									"value": "Fri, 20 Oct 2017 13:56:29 GMT",
+									"description": ""
+								},
+								{
+									"name": "expires",
+									"key": "expires",
+									"value": "-1",
+									"description": ""
+								},
+								{
+									"name": "pragma",
+									"key": "pragma",
+									"value": "no-cache",
+									"description": ""
+								},
+								{
+									"name": "server",
+									"key": "server",
+									"value": "Microsoft-IIS/10.0",
+									"description": ""
+								},
+								{
+									"name": "x-aspnet-version",
+									"key": "x-aspnet-version",
+									"value": "4.0.30319",
+									"description": ""
+								},
+								{
+									"name": "x-powered-by",
+									"key": "x-powered-by",
+									"value": "ASP.NET",
+									"description": ""
+								},
+								{
+									"name": "x-sourcefiles",
+									"key": "x-sourcefiles",
+									"value": "=?UTF-8?B?YzpcdXNlcnNcZ2FyeS5zdGFmZm9yZFxkb2N1bWVudHNcdmlzdWFsIHN0dWRpbyAyMDE3XFByb2plY3RzXFJlc3RhdXJhbnRXZWJBUElcUmVzdGF1cmFudFdlYkFQSVxhcGlcbWVudWl0ZW1zXA==?=",
+									"description": ""
+								}
+							],
+							"cookie": [],
+							"responseTime": "86",
+							"body": "[{\"Description\":\"Cheeseburger\",\"Price\":3.99},{\"Description\":\"Coffee\",\"Price\":0.99},{\"Description\":\"French Fries\",\"Price\":1.29},{\"Description\":\"Grilled Chicken Sandwich\",\"Price\":4.99},{\"Description\":\"Hamburger\",\"Price\":2.99},{\"Description\":\"Hot Dog\",\"Price\":2.49},{\"Description\":\"Ice Cream Cone\",\"Price\":1.99},{\"Description\":\"Onion Rings\",\"Price\":2.29},{\"Description\":\"Soft Drink\",\"Price\":1.19},{\"Description\":\"Test Item\",\"Price\":9.99},{\"Description\":\"Water\",\"Price\":0.0}]"
+						}
+					]
+				},
+				{
+					"name": "api/menuitems",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{api_menu}}/{{api_prefix}}/menuitems",
+							"host": [
+								"{{api_menu}}"
+							],
+							"path": [
+								"{{api_prefix}}",
+								"menuitems"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "orders",
+			"description": "",
+			"item": [
+				{
+					"name": "api/orders {order}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"order_number\", jsonData.OrderNumber);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"items\":\n  [\n    {\n      \"quantity\": \"1\",\n      \"menuId\": \"1\",\n      \"description\": \"Cheeseburger\",\n      \"price\": \"3.99\"\n    },\n    {\n      \"quantity\": \"5\",\n      \"menuId\": \"2\",\n      \"description\": \"Hot Dog\",\n      \"price\": \"2.49\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{api_order}}/{{api_prefix}}/orders",
+							"host": [
+								"{{api_order}}"
+							],
+							"path": [
+								"{{api_prefix}}",
+								"orders"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "api/orders/{order}",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"items\":\n  [\n    {\n      \"quantity\": \"1\",\n      \"menuId\": \"1\",\n      \"description\": \"Cheeseburger Deluxe\",\n      \"price\": \"3.99\"\n    },\n    {\n      \"quantity\": \"5\",\n      \"menuId\": \"2\",\n      \"description\": \"Foot-Long Hot Dog\",\n      \"price\": \"2.49\"\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{api_order}}/{{api_prefix}}/orders/{{order_number}}",
+							"host": [
+								"{{api_order}}"
+							],
+							"path": [
+								"{{api_prefix}}",
+								"orders",
+								"{{order_number}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "api/orders/{order}",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"restaurantOrder\":[{\"Quantity\":\"1\",\"Description\":\"Cheeseburger\",\"Price\":\"3.99\"},{\"Quantity\":\"5\",\"Description\":\"Hot Dog\",\"Price\":\"2.49\"}]}&callback=OrderResponse&_=1507906662155\""
+						},
+						"url": {
+							"raw": "{{api_order}}/{{api_prefix}}/orders/{{order_number}}",
+							"host": [
+								"{{api_order}}"
+							],
+							"path": [
+								"{{api_prefix}}",
+								"orders",
+								"{{order_number}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "api/orders/{order}",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{api_order}}/{{api_prefix}}/orders/{{order_number}}",
+							"host": [
+								"{{api_order}}"
+							],
+							"path": [
+								"{{api_prefix}}",
+								"orders",
+								"{{order_number}}"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "api/orders",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"restaurantOrder\":[{\"Quantity\":\"1\",\"Description\":\"Cheeseburger\",\"Price\":\"3.99\"},{\"Quantity\":\"5\",\"Description\":\"Hot Dog\",\"Price\":\"2.49\"}]}&callback=OrderResponse&_=1507906662155\""
+						},
+						"url": {
+							"raw": "{{api_order}}/{{api_prefix}}/orders",
+							"host": [
+								"{{api_order}}"
+							],
+							"path": [
+								"{{api_prefix}}",
+								"orders"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "api/orders",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{api_order}}/{{api_prefix}}/orders",
+							"host": [
+								"{{api_order}}"
+							],
+							"path": [
+								"{{api_prefix}}",
+								"orders"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
